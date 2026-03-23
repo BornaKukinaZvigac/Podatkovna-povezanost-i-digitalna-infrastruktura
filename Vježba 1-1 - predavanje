@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student>
+    <ime>Pero</ime>
+    <prezime>Perić</prezime>
+    <JMBG>0123456789012</JMBG>
+    <datumRodjenja>2000-01-01</datumRodjenja>
+    <godinaStudija>2</godinaStudija>
+    <studijskiProgram>Informatika</studijskiProgram>
+    <adresa>
+        <ulica>Vrbik 8a</ulica>
+        <grad>Zagreb</grad>
+        <postanskiBroj>10000</postanskiBroj>
+    </adresa>
+</student>
