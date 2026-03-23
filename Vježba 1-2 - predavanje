@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student>
+    <ime>Pero</ime>
+    <prezime>Perić</prezime>
+    <JMBG>0123456789012</JMBG>
+    <datumRodjenja>2000-01-01</datumRodjenja>
+    <godinaStudija>2</godinaStudija>
+    <kontakt>
+        <e-mail>peroperic@gmail.com</e-mail>
+        <teleton>0989873348</teleton>
+    </kontakt>
+    <kolegiji>
+        <kolegij>
+            <nazivKolegija>Podatkovna povezanost i digitalna infrastruktura</nazivKolegija>
+            <imeProfesora>Alen Šimec</imeProfesora>
+            <ECTS>5</ECTS>
+        </kolegij>
+        <kolegij>
+            <nazivKolegija>Programiranje web aplikacija</nazivKolegija>
+            <imeProfesora>Alen Šimec</imeProfesora>
+            <ECTS>5</ECTS>
+        </kolegij>
+        <kolegij>
+            <nazivKolegija>Produkcija digitalnih medija</nazivKolegija>
+            <imeProfesora>Ivan Rajković</imeProfesora>
+            <ECTS>4</ECTS>
+        </kolegij>
+    </kolegiji>
+</student>
