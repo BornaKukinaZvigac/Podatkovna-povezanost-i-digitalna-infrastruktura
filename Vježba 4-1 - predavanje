@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<podaci>
+    <ime>Boško Boškić</ime>
+    <cijena>9.99</cijena>
+    <godine>20</godine>
+    <aktivan>false</aktivan>
+    <datumRodjenja>2000-01-01</datumRodjenja>
+    <vrijemePocetka>12:30:00</vrijemePocetka>
+</podaci>
