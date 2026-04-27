@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<narudzba>
+    <kupac>Boško Boškić</kupac>
+    <datumNarudzbe>2026-04-27</datumNarudzbe>
+    <kolicina>49</kolicina>
+    <statusNarudzbe>u_obradi</statusNarudzbe>
+    <ukupanIznos valuta="EUR">500.00</ukupanIznos>
+</narudzba>
