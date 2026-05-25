@@ -1,0 +1,270 @@
+<?php
+$json = '{
+  "ime": "Petar",
+  "prezime": "Kovač",
+  "starost": 30,
+  "auti": [
+    {
+      "marka": "Ford",
+      "models": ["Mustang", "Focus", "Fiesta"],
+      "godina": 2018,
+      "boja": "crvena",
+      "cijena": 35000,
+      "kilometri": 45000,
+      "gorivo": "Benzin",
+      "vlasnik_od": 2019,
+      "registriran": true
+    },
+    {
+      "marka": "BMW",
+      "models": ["320", "X1", "X6"],
+      "godina": 2020,
+      "boja": "crna",
+      "cijena": 28000,
+      "kilometri": 25000,
+      "gorivo": "Dizel",
+      "vlasnik_od": 2021,
+      "registriran": true
+    },
+    {
+      "marka": "Fiat",
+      "models": ["500", "Panda"],
+      "godina": 2015,
+      "boja": "bijela",
+      "cijena": 12000,
+      "kilometri": 98000,
+      "gorivo": "Benzin",
+      "vlasnik_od": 2016,
+      "registriran": false
+    },
+    {
+      "marka": "Opel",
+      "models": ["Astra", "Corsa", "Insignia"],
+      "godina": 2012,
+      "boja": "siva",
+      "cijena": 18000,
+      "kilometri": 140000,
+      "gorivo": "Dizel",
+      "vlasnik_od": 2014,
+      "registriran": false
+    }
+  ]
+}';
+
+$podatci = json_decode($json, true);
+
+$autiHtml = "";
+
+foreach ($podatci["auti"] as $auto) {
+
+    $modeliHtml = "";
+
+    foreach ($auto["models"] as $model) {
+        $modeliHtml .= "<li>" . $model . "</li>";
+    }
+
+    /* Oznaka prema cijeni */
+    if ($auto["cijena"] > 20000) {
+        $oznaka = "Skuplji automobil";
+        $klasaCijene = "skupi";
+    } else {
+        $oznaka = "Povoljniji automobil";
+        $klasaCijene = "povoljni";
+    }
+
+    $autiHtml .= "
+        <div class='car " . $klasaCijene . "'>
+
+            <h3>" . $auto["marka"] . "</h3>
+
+            <div class='car-data'>
+
+                <div class='data-box'>
+                    <span>Godina</span>
+                    <strong>" . $auto["godina"] . "</strong>
+                </div>
+
+                <div class='data-box'>
+                    <span>Boja</span>
+                    <strong>" . $auto["boja"] . "</strong>
+                </div>
+
+                <div class='data-box'>
+                    <span>Cijena</span>
+                    <strong>" . number_format($auto["cijena"], 2, ",", ".") . " EUR</strong>
+                </div>
+
+                <div class='data-box'>
+                    <span>Kilometri</span>
+                    <strong>" . number_format($auto["kilometri"], 0, ",", ".") . " km</strong>
+                </div>
+
+                <div class='data-box'>
+                    <span>Gorivo</span>
+                    <strong>" . $auto["gorivo"] . "</strong>
+                </div>
+
+                <div class='data-box'>
+                    <span>Vlasnik od</span>
+                    <strong>" . $auto["vlasnik_od"] . "</strong>
+                </div>
+
+            </div>
+
+            <div class='status'>
+                " . $oznaka . "
+            </div>
+
+            <div class='models'>
+                <h4>Modeli</h4>
+
+                <ul>
+                    " . $modeliHtml . "
+                </ul>
+            </div>
+
+        </div>
+    ";
+}
+
+print "
+<!DOCTYPE html>
+<html lang='hr'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <title>JSON automobili</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .cars {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .car {
+            background: white;
+            color: #111827;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .skupi {
+            border-top: 8px solid #dc2626;
+        }
+
+        .povoljni {
+            border-top: 8px solid #16a34a;
+        }
+
+        .car h3 {
+            margin-top: 0;
+            font-size: 30px;
+        }
+
+        .car-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .data-box {
+            background: #f3f4f6;
+            padding: 14px;
+            border-radius: 12px;
+        }
+
+        .data-box span {
+            display: block;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            background: #111827;
+            color: white;
+        }
+
+        .models {
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 16px;
+        }
+
+        .models ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .models li {
+            background: #2563eb;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 999px;
+        }
+
+        @media (max-width: 800px) {
+
+            .cars {
+                grid-template-columns: 1fr;
+            }
+
+            .car-data {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class='page'>
+
+    <h1>Popis automobila iz JSON dokumenta</h1>
+
+    <div class='cars'>
+        " . $autiHtml . "
+    </div>
+
+</div>
+
+</body>
+</html>
+";
+?>
