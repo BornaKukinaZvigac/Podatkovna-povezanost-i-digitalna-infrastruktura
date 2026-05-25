@@ -1,0 +1,180 @@
+<?php
+$json = '{
+  "ime": "Petar",
+  "prezime": "Kovač",
+  "starost": 30,
+  "grad": "Zagreb",
+  "zaposlen": true,
+  "auti": [
+    {
+      "marka": "Ford",
+      "model": "Mustang",
+      "godina": 2018,
+      "boja": "crvena",
+      "cijena": 35000,
+      "registriran": true
+    },
+    {
+      "marka": "BMW",
+      "model": "X1",
+      "godina": 2020,
+      "boja": "crna",
+      "cijena": 28000,
+      "registriran": true
+    },
+    {
+      "marka": "Fiat",
+      "model": "500",
+      "godina": 2015,
+      "boja": "bijela",
+      "cijena": 12000,
+      "registriran": false
+    },
+    {
+      "marka": "Audi",
+      "model": "A4",
+      "godina": 2021,
+      "boja": "siva",
+      "cijena": 42000,
+      "registriran": true
+    },
+    {
+      "marka": "Renault",
+      "model": "Clio",
+      "godina": 2017,
+      "boja": "plava",
+      "cijena": 15000,
+      "registriran": false
+    }
+  ]
+}';
+
+$podatci = json_decode($json, true);
+?>
+
+<!DOCTYPE html>
+<html lang="hr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JSON automobili</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: #f1f5f9;
+                color: #1f2937;
+                padding: 40px;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .auti {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 22px;
+            }
+
+            .auto-kartica {
+                background: white;
+                border-radius: 18px;
+                padding: 24px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+                border-top: 6px solid #94a3b8;
+            }
+
+            .auto-kartica h3 {
+                margin-top: 0;
+            }
+
+            .registriran {
+                border-top-color: #16a34a;
+            }
+
+            .nije-registriran {
+                border-top-color: #dc2626;
+            }
+
+            /* Posebna klasa za automobile skuplje od 20.000 EUR */
+            .skupi-auto {
+                background: #fef3c7;
+                border: 3px solid #f59e0b;
+            }
+
+            .oznaka {
+                display: inline-block;
+                margin-top: 12px;
+                padding: 8px 14px;
+                border-radius: 999px;
+                font-weight: bold;
+                background: #e5e7eb;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="container">
+
+        <h1>Popis automobila</h1>
+
+        <div class="auti">
+
+            <?php foreach ($podatci["auti"] as $auto): ?>
+
+                <?php
+
+                if ($auto["registriran"] == true) {
+                    $klasa = "registriran";
+                    $status = "Registriran";
+                } else {
+                    $klasa = "nije-registriran";
+                    $status = "Nije registriran";
+                }
+
+                /* Automobili skuplji od 20.000 EUR */
+                if ($auto["cijena"] > 20000) {
+                    $klasa .= " skupi-auto";
+                }
+
+                ?>
+
+                <div class="auto-kartica <?php echo $klasa; ?>">
+
+                    <h3>
+                        <?php echo $auto["marka"] . " " . $auto["model"]; ?>
+                    </h3>
+
+                    <p><strong>Marka:</strong> <?php echo $auto["marka"]; ?></p>
+
+                    <p><strong>Model:</strong> <?php echo $auto["model"]; ?></p>
+
+                    <p><strong>Godina:</strong> <?php echo $auto["godina"]; ?></p>
+
+                    <p><strong>Boja:</strong> <?php echo $auto["boja"]; ?></p>
+
+                    <p>
+                        <strong>Cijena:</strong>
+                        <?php echo number_format($auto["cijena"], 2, ",", "."); ?> EUR
+                    </p>
+
+                    <span class="oznaka">
+                        <?php echo $status; ?>
+                    </span>
+
+                </div>
+
+            <?php endforeach; ?>
+
+        </div>
+
+    </div>
+    </body>
+</html>
