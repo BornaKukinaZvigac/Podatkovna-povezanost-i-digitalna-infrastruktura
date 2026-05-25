@@ -1,0 +1,6 @@
+1. Vraća prvi <BBB> element među sibling elementima
+2. Vraća prvi <BBB> koji je direktno dijete elementa <AAA>
+3. Vraća zadnji <BBB> element među sibling elementima
+4. Vraća prvo dijete elementa <AAA>
+5. Vraća sve <BBB> elemente koji imaju i atribut id i atribut grupa
+6. Vraća sve <BBB> elemente koji imaju atribut id, ali nemaju atribut grupa
